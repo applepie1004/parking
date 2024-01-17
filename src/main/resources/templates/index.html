@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}"
+>
+<head>
+    <title>메인</title>
+</head>
+<body>
+<th:block layout:fragment="content_body">
+    <div class="main-container">
+        <input type="number" min="0" max="9" id="carNum1" class="car-num-input">
+        <input type="number" min="0" max="9" id="carNum2" class="car-num-input">
+        <input type="number" min="0" max="9" id="carNum3" class="car-num-input">
+        <input type="number" min="0" max="9" id="carNum4" class="car-num-input">
+
+        <span class="display d-none"></span>
+        <form class="car-info hide" id="detail-info">
+            <span class="close"></span>
+            <div class="content content-1">
+                <p>
+                    상세 정보를 입력해주세요.
+                </p>
+                <div class="detail-div">
+<!--                    <div class="d-flex justify-content-center">-->
+<!--                        <select name="cardinal" class="form-control form-control-sm">-->
+<!--                            <option value="1차">1</option>-->
+<!--                            <option value="2차">2</option>-->
+<!--                        </select>-->
+<!--                        <label>차</label>-->
+<!--                    </div>-->
+
+                    <div class="d-flex justify-content-center">
+                        <input type="number" name="dong" class="form-control form-control-sm" />
+                        <label>동</label>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <input type="number" name="ho" class="form-control form-control-sm" />
+                        <label>호</label>
+                    </div>
+                    <div class="d-flex justify-content-start mb-0">
+                        <label class="ms-0">차량 상세번호</label>
+                    </div>
+                    <div class="d-flex justify-content-center mt-0">
+                        <input type="text" name="detail" class="form-control form-control-sm" />
+                        <label id="detailCarNumber"></label>
+                    </div>
+                </div>
+
+                <button class="btn btn-sm btn-outline-dark" type="button" id="regBtn">등록</button>
+            </div>
+        </form>
+    </div>
+</th:block>
+
+<th:block layout:fragment="page_js">
+    <script th:src="@{~/js/car.js}"></script>
+</th:block>
+</body>
+</html>

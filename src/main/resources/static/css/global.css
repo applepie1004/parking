@@ -1,0 +1,89 @@
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+body { overflow: hidden; }
+
+.contents-body { position: relative; }
+.main-container {
+    background-color: #eeeeee;
+    text-align: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.car-num-input {
+    text-align: center;
+    font-size: 25px;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    top: calc(50% - 50px);
+}
+
+.car-info {
+    position: absolute;
+    width: 100%;
+    height: 60%;
+    bottom: 0;
+    background-color: #ffffff;
+    transition: all 0.3s;
+    visibility: visible;
+    border-radius: 20px 20px 0 0;
+}
+
+.car-info.hide {
+    height: 0%;
+    visibility: hidden;
+    transition: all 0.3s;
+}
+
+span.close:after,
+span.close:before {
+    position: absolute;
+    right: 20px;
+    width: 5px;
+    height: 20px;
+    background-color: #000;
+    content: "";
+    top: 10px;
+    border-radius: 5px;
+}
+span.close:after { transform: rotate(45deg); }
+span.close:before { transform: rotate(-45deg); }
+
+span.display {
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    rotate: 45deg;
+    border-left: solid 5px #000;
+    border-top: solid 5px #000;
+    bottom: 10px;
+    left: calc(50% - 10px);
+}
+
+.content {
+    margin-top: 50px;
+}
+.detail-div > div.d-flex {
+    width: 150px;
+    margin: 10px auto;
+}
+.detail-div input,
+.detail-div select {
+    text-align: right;
+}
+.detail-div select option {
+    direction: rtl;
+}
+.detail-div label {
+    margin: 0 10px;
+    line-height: 30px;
+}
