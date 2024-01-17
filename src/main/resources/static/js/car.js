@@ -88,35 +88,39 @@ $(function(){
             const data = JSON.stringify({dong: _dong, ho: _ho, carNum: _val+_val2});
 
             // 0. 저장된 차인지 정보 입수
-            $.ajax({
-                url: "/apply/data/car-exist",
-                type: 'POST',
-                contentType : 'application/json',
-                data: data,
-                success: function (res, textStatus, jqXHR) {
-                    if(res.RESULT.isCarExist) {
-                        return;
-                    }else {
-                        alert('등록 가능한 차입니다.')
+            new Promise((resolve, fail) => {
+                $. ajax({
+                    url: "/apply/data/car-exist",
+                    type: 'POST',
+                    contentType : 'application/json',
+                    data: data,
+                    success: function (res, textStatus, jqXHR) {
+                        if(res.RESULT.isCarExist) {
+                            return;
+                        }else {
+                            alert('등록 가능한 차입니다.')
+                            resolve() /* then 실행 */
+                        }  /* -- END IF -- */
+                    } /* -- END AJAX - SUCCESS -- */
+                }) /* -- END AJAX -- */
+            }).then(r =>{
+
+                // 1. 차량 대수 확인
+                $.ajax({
+                    url: "/apply/data/get-car-rt",
+                    type: 'POST',
+                    contentType : 'application/json',
+                    data: data,
+                    success: function (res, textStatus, jqXHR) {
+                        if(carQtRt[res.RESULT+1]) {
+                            alert(`${carQtRt[res.RESULT+1].toLocaleString('ko-KR')}원을 결제해주세요.`)
+                        } else {
+                            alert('더 이상 차량을 등록할 수 없습니다.')
+                        }
                     }
-                }
+                }) /* -- END AJAX -- */
             })
 
-
-            // 1. 차량 대수 확인
-            $.ajax({
-                url: "/apply/data/get-car-rt",
-                type: 'POST',
-                contentType : 'application/json',
-                data: data,
-                success: function (res, textStatus, jqXHR) {
-                    if(carQtRt[res.RESULT+1]) {
-                        alert(`${carQtRt[res.RESULT+1].toLocaleString('ko-KR')}원을 결제해주세요.`)
-                    } else {
-                        alert('더 이상 차량을 등록할 수 없습니다.')
-                    }
-                }
-            })
 
 
             // 2. 결제
