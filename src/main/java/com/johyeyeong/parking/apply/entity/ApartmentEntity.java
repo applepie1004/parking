@@ -7,6 +7,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -15,7 +16,7 @@ public class ApartmentEntity {
 
     @Id
     @Column(name = "apt_id")
-    private String aptId;
+    private UUID aptId;
 
     @Column(name = "dong")
     private int dong;

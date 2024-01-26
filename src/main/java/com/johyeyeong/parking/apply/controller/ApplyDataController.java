@@ -3,6 +3,7 @@ package com.johyeyeong.parking.apply.controller;
 import com.johyeyeong.parking.apply.dto.CarRtParam;
 import com.johyeyeong.parking.apply.entity.ApartmentEntity;
 import com.johyeyeong.parking.apply.entity.CarEntity;
+import com.johyeyeong.parking.apply.entity.CarKeyEntity;
 import com.johyeyeong.parking.apply.repository.ApartmentRepository;
 import com.johyeyeong.parking.apply.repository.CarQtRtRepository;
 import com.johyeyeong.parking.apply.repository.CarRepository;
@@ -39,7 +40,7 @@ public class ApplyDataController {
         Map<String, Object> resultMap = new HashMap<>();
 
         ApartmentEntity entity = apartmentRepository.findByDongAndHo(carRtParam.getDong(), carRtParam.getHo());
-        int count = carRepository.countAllByAptId(UUID.fromString(entity.getAptId()));
+        int count = carRepository.countAllByAptIdAndStatusIs(entity.getAptId(),"Y");
 
         resultMap.put("RESULT", count);
 
@@ -50,10 +51,34 @@ public class ApplyDataController {
         Map<String, Object> resultMap = new HashMap<>();
 
         ApartmentEntity entity = apartmentRepository.findByDongAndHo(carRtParam.getDong(), carRtParam.getHo());
-        CarEntity car = carRepository.findByAptIdAndCarNum(UUID.fromString(entity.getAptId()), carRtParam.getCarNum());
+        CarEntity car = carRepository.findByAptIdAndCarNum(entity.getAptId(), carRtParam.getCarNum());
 
         resultMap.put("RESULT", new HashMap<>(){{ put("isCarExist", car != null ? true : false ); }});
 
         return resultMap;
     }
+
+
+    @PostMapping("/save-car")
+    public Map<String, Object> applyCarByAptId(@RequestBody CarRtParam carRtParam) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        try {
+            ApartmentEntity entity = apartmentRepository.findByDongAndHo(carRtParam.getDong(), carRtParam.getHo());
+
+            CarEntity car = new CarEntity();
+            car.setAptId(entity.getAptId());
+            car.setCarNum(carRtParam.getCarNum());
+            car.setStatus("W");
+
+            carRepository.save(car); // 기본 jpa 구문
+            resultMap.put("RESULT", "SUCCESS");
+        } catch (Exception e) {
+            resultMap.put("RESULT", "FAILURE");
+        }
+
+        return resultMap;
+    }
+
+
 }

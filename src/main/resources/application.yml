@@ -3,7 +3,7 @@ server:
 
 spring:
   pid:
-    file: northpole.pid
+    file: parking.pid
   main:
     banner-mode: off
   datasource:

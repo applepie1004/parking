@@ -88,7 +88,7 @@ $(function(){
             const data = JSON.stringify({dong: _dong, ho: _ho, carNum: _val+_val2});
 
             // 0. 저장된 차인지 정보 입수
-            new Promise((resolve, fail) => {
+            new Promise((resolve) => {
                 $. ajax({
                     url: "/apply/data/car-exist",
                     type: 'POST',
@@ -96,35 +96,54 @@ $(function(){
                     data: data,
                     success: function (res, textStatus, jqXHR) {
                         if(res.RESULT.isCarExist) {
+                            alert('등록되었거나 등록 중인 차량입니다.')
                             return;
                         }else {
-                            alert('등록 가능한 차입니다.')
+                            alert('등록 가능한 차량입니다.')
                             resolve() /* then 실행 */
                         }  /* -- END IF -- */
                     } /* -- END AJAX - SUCCESS -- */
                 }) /* -- END AJAX -- */
             }).then(r =>{
 
-                // 1. 차량 대수 확인
-                $.ajax({
-                    url: "/apply/data/get-car-rt",
-                    type: 'POST',
-                    contentType : 'application/json',
-                    data: data,
-                    success: function (res, textStatus, jqXHR) {
-                        if(carQtRt[res.RESULT+1]) {
-                            alert(`${carQtRt[res.RESULT+1].toLocaleString('ko-KR')}원을 결제해주세요.`)
-                        } else {
-                            alert('더 이상 차량을 등록할 수 없습니다.')
+                new Promise((resolve2) => {
+                    // 1. 차량 대수 확인
+                    $.ajax({
+                        url: "/apply/data/get-car-rt",
+                        type: 'POST',
+                        contentType : 'application/json',
+                        data: data,
+                        success: function (res, textStatus, jqXHR) {
+                            if(carQtRt[res.RESULT+1]) {
+                                const result = confirm(`현재 ${res.RESULT}대의 차량이 등록되어있습니다.\n다음 차량의 등록 가격은 ${carQtRt[res.RESULT+1].toLocaleString('ko-KR')}원 입니다. \n등록하시겠습니까?`)
+                                if(result) {
+                                    resolve2(res.RESULT+1)
+                                }
+                                
+                            } else {
+                                alert('더 이상 차량을 등록할 수 없습니다.')
+                            }
                         }
-                    }
-                }) /* -- END AJAX -- */
+                    }) /* -- END AJAX -- */
+                }).then((p) => {
+                    // 2. 결제(추후 기능 작성)
+                    // 미정
+                    
+                    // 3. 결제 완 > 등록(대기 상태), 결제 미완 > 첨부터(결제에 실패했습니다. 화면이 새로고침됩니다.)
+                    $.ajax({
+                        url: "/apply/data/save-car",
+                        type: 'POST',
+                        contentType : 'application/json',
+                        data: data,
+                        success: function (res, textStatus, jqXHR) {
+                            console.log(res);
+                        }
+                    }) /* -- END AJAX -- */
+                })
             })
 
-
-
             // 2. 결제
-            // 3. 결제 완 > 등록, 결제 미완 > 첨부터(결제에 실패했습니다. 화면이 새로고침됩니다.)
+            // 3. 결제 완 > 등록(대기 상태), 결제 미완 > 첨부터(결제에 실패했습니다. 화면이 새로고침됩니다.)
         } else {
             alert('정확하지 않은 차량 번호 입니다.')
         }
