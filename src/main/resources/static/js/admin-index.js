@@ -11,6 +11,7 @@ $(function (){
         pagination:"local",       //paginate the data
         paginationSize:20,         //allow 7 rows per page of data
         placeholder: 'No Data',
+        selectable: 1,
         initialSort:[             //set the initial sort order of the data
             {column:"status", dir:"asc"},
         ],
@@ -27,7 +28,12 @@ $(function (){
                     return '대기'
                 }
             }},
-            {title:"Date and Time", field:"regDt"},
+            {title:"Date and Time", field:"regDt", formatter:"datetime", formatterParams:{
+                inputFormat:"yyyy-MM-dd HH:mm:ss.u",
+                outputFormat:"yyyy-MM-dd HH:mm",
+                invalidPlaceholder:"(invalid date)",
+                timezone:"Asia/Seoul",
+            }},
         ],
         ajaxResponse : (e, res, result) => {
             return result.list;

@@ -4,6 +4,6 @@ main.main-container {
     margin: 5rem auto;
 }
 
-main.main-container * {
+.tabulator-row .tabulator-cell {
     font-size: 12px;
 }
