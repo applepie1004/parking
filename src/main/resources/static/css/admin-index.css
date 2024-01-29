@@ -1,0 +1,9 @@
+
+main.main-container {
+    width: 80%;
+    margin: 5rem auto;
+}
+
+main.main-container * {
+    font-size: 12px;
+}

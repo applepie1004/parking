@@ -10,4 +10,12 @@ public class ViewController {
     public String index(){
         return "index";
     }
+
+
+
+    /* 관리사무소 admin : adm */
+    @GetMapping("/adm")
+    public String adminIndex(){
+        return "adm/index";
+    }
 }

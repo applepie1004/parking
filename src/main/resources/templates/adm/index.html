@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}"
+>
+<head>
+    <title>관리자</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/5.5.3/css/tabulator.min.css" integrity="sha512-t/BIXyXv+371F1q9LGQd6fIMakUqG+Ov+5RvnQ7WMijVYmxMG9yNBA5Vr4QCRAQIAxSfcILi8pk1kaQGrbRdhA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/5.5.3/css/tabulator_bootstrap5.min.css" integrity="sha512-9Dt00XGlxNjuRuYFTKI7rGgt2n6ZdmvOuZGORtltty0uNBT15tnQTiVDC0Ez93S7K2Y5Fr5ody8iyxWtiTZIUQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" th:href="@{~/css/admin-index.css}">
+</head>
+<body>
+<th:block layout:fragment="content_body">
+    <main class="main-container">
+        <div id="table">
+
+        </div>
+    </main>
+</th:block>
+
+<th:block layout:fragment="page_js">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/5.5.3/js/tabulator.min.js" integrity="sha512-Na020SHOgWDAy5gOdK5/+5YhuGCoAyFiptOEthUOzSI7FiJLCDDdGRzZbDy8NSZXB+e85CZjo6P/eJaT+AJcBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script th:src="@{~/js/admin-index.js}"></script>
+</th:block>
+</body>
+</html>

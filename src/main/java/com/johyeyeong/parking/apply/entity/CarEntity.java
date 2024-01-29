@@ -22,4 +22,7 @@ public class CarEntity {
 
     @Column(name = "status")
     private String status;
+
+    @Column(name = "reg_dt")
+    private String regDt;
 }
