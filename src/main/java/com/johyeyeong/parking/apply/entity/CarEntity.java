@@ -3,6 +3,7 @@ package com.johyeyeong.parking.apply.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
 @Data
@@ -24,5 +25,5 @@ public class CarEntity {
     private String status;
 
     @Column(name = "reg_dt")
-    private String regDt;
+    private Timestamp regDt;
 }

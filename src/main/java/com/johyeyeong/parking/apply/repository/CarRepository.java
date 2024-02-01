@@ -3,6 +3,7 @@ package com.johyeyeong.parking.apply.repository;
 
 import com.johyeyeong.parking.apply.entity.CarEntity;
 import com.johyeyeong.parking.apply.repository.querydsl.CarRepositoryCustom;
+import com.querydsl.core.Tuple;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
@@ -14,6 +15,8 @@ public interface CarRepository extends JpaRepository<CarEntity, String>, CarRepo
     @Override
     CarEntity findByAptIdAndCarNum(UUID aptId, String carNum);
 
+    @Override
+    List<Tuple> findCarAndApartment();
 
     /* 일반 JPA */
     int countAllByAptIdAndStatusIs(UUID aptId,String status);

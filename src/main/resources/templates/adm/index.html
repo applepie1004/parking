@@ -13,6 +13,14 @@
 <body>
 <th:block layout:fragment="content_body">
     <main class="main-container">
+        <div class="row">
+            <div class="col-8 offset-4 col-md-3 offset-md-9">
+                <div class="d-flex">
+                    <input type="text" class="form-control form-control-sm" />
+                    <button class="btn btn-sm btn-dark w-50 ms-2" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i> 검색</button>
+                </div>
+            </div>
+        </div>
         <div id="table">
 
         </div>
@@ -22,7 +30,9 @@
 <th:block layout:fragment="page_js">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/5.5.3/js/tabulator.min.js" integrity="sha512-Na020SHOgWDAy5gOdK5/+5YhuGCoAyFiptOEthUOzSI7FiJLCDDdGRzZbDy8NSZXB+e85CZjo6P/eJaT+AJcBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.4.4/luxon.min.js" integrity="sha512-dUlSLLkxslGILhPdCkALwk4szPhp3xmZIKFtlUD+O9Lslq41Aksmdt5OGqpomDoT4FsCUH70jQU8ezZHI3v1RQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/dayjs.min.js" integrity="sha512-FwNWaxyfy2XlEINoSnZh1JQ5TRRtGow0D6XcmAWmYCRgvqOUTnzCxPc9uF35u5ZEpirk1uhlPVA19tflhvnW1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script th:src="@{~/js/admin-index.js}"></script>
+
 </th:block>
 </body>
 </html>
