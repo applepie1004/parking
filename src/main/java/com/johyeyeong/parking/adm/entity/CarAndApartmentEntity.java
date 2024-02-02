@@ -1,17 +1,33 @@
 package com.johyeyeong.parking.adm.entity;
 
+import com.johyeyeong.parking.apply.entity.ApartmentEntity;
+import com.johyeyeong.parking.apply.entity.CarEntity;
 import com.johyeyeong.parking.apply.entity.CarKeyEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
-import lombok.Data;
+import lombok.*;
 
 import java.sql.Timestamp;
 import java.util.UUID;
 
-@Data
+@Getter @Setter
 @IdClass(CarKeyEntity.class)
+@NoArgsConstructor
 public class CarAndApartmentEntity {
+
+    public CarAndApartmentEntity(ApartmentEntity apartment, CarEntity car) {
+        this.aptId = apartment.getAptId();
+        this.carNum = car.getCarNum();
+        this.status = car.getStatus();
+        this.carRegDt = car.getRegDt();
+        this.dong = apartment.getDong();
+        this.ho = apartment.getHo();
+        this.onwer = apartment.getOnwer();
+        this.phone = apartment.getPhone();
+    }
+
+
     @Id
     @Column(name = "apt_id")
     private UUID aptId;
@@ -19,7 +35,6 @@ public class CarAndApartmentEntity {
     @Id
     @Column(name = "car_num")
     private String carNum;
-
 
     @Column(name = "status")
     private String status;

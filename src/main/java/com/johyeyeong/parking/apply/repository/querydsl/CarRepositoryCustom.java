@@ -10,7 +10,4 @@ import java.util.UUID;
 
 public interface CarRepositoryCustom {
     CarEntity findByAptIdAndCarNum(UUID aptId, String carNum);
-    List<Tuple> findCarAndApartment();
-
-
 }

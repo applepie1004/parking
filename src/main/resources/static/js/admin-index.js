@@ -41,10 +41,10 @@ $(function (){
             },
         ],
         ajaxResponse : (e, res, result) => {
-            return result.list;
+            return result.LIST;
         },
         ajaxRequesting: function(url, params) {
-            params.searchText = ""
+            params.status = ""
         },
         footerElement:
             "<button id='btnUpdate' class='btn btn-sm btn-light btn-outline-dark me-1'><i class='fa-solid fa-plus'></i> 수정</button>",

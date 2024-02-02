@@ -15,9 +15,6 @@ public interface CarRepository extends JpaRepository<CarEntity, String>, CarRepo
     @Override
     CarEntity findByAptIdAndCarNum(UUID aptId, String carNum);
 
-    @Override
-    List<Tuple> findCarAndApartment();
-
     /* 일반 JPA */
     int countAllByAptIdAndStatusIs(UUID aptId,String status);
 
