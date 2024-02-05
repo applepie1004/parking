@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}"
+>
+<head>
+    <link rel="stylesheet" th:href="@{~/css/base2.css}">
+</head>
+<body>
+<th:block layout:fragment="content_body">
+    <header class="header">
+        <ul>
+            <li><a href="#">차량 등록</a></li>
+            <li><a href="#">세대 관리</a></li>
+        </ul>
+    </header>
+
+    <th:block layout:fragment="content_body2">
+    </th:block>
+</th:block>
+
+<th:block layout:fragment="page_js">
+</th:block>
+</body>
+</html>

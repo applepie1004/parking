@@ -23,3 +23,6 @@ spring:
     cache: false
 
 
+file:
+  apt: D:/dev/file/apt
+  car: D:/dev/file/car
