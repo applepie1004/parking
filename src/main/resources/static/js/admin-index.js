@@ -21,6 +21,8 @@ $(function (){
         columns:[                 //define the table columns
             {title:"aptId", field:"aptId", visible:false },
             {title:"차량번호", field:"carNum" },
+            {title:"동", field:"dong" },
+            {title:"호", field:"ho" },
             {title:"상태", field:"status",formatter: (e) =>{
                 let data = e.getData()['status']
                 if(data == 'N') {
@@ -31,7 +33,9 @@ $(function (){
                     return '대기'
                 }
             }, editor:"list", editorParams:{values:{'N':'거절','Y':'허가','W':'대기'}}},
-            {title:"등록시간", field:"regDt",
+            {title:"세대주", field:"owner" },
+            {title:"연락처", field:"phone" },
+            {title:"등록시간", field:"carRegDt",
                 formatter:"datetime", formatterParams:{
                     inputFormat:"yyyy-MM-dd'T'HH:mm:ss.SSSZZ",
                     outputFormat:"yyyy-MM-dd HH:mm",
@@ -44,7 +48,10 @@ $(function (){
             return result.LIST;
         },
         ajaxRequesting: function(url, params) {
-            params.status = ""
+            params.status = $('status').val();
+            params.dong = $('dong').val();
+            params.ho = $('ho').val();
+            params.carNum = $('carNum').val();
         },
         footerElement:
             "<button id='btnUpdate' class='btn btn-sm btn-light btn-outline-dark me-1'><i class='fa-solid fa-plus'></i> 수정</button>",

@@ -17,7 +17,6 @@ public interface CarRepository extends JpaRepository<CarEntity, String>, CarRepo
 
     /* 일반 JPA */
     int countAllByAptIdAndStatusIs(UUID aptId,String status);
-
-    List<CarEntity> findAllByStatusIs(String status);
+    CarEntity findByCarNum(String carNum);
 
 }

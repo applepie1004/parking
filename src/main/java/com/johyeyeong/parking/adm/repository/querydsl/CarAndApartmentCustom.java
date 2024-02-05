@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface CarAndApartmentCustom {
 
-    public List<CarAndApartmentEntity> findCarAndApartment(StatusParam param);
+    List<CarAndApartmentEntity> findCarAndApartment(StatusParam param);
 }

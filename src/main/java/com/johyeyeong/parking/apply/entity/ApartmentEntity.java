@@ -24,8 +24,8 @@ public class ApartmentEntity {
     @Column(name = "ho")
     private int ho;
 
-    @Column(name = "onwer")
-    private String onwer;
+    @Column(name = "owner")
+    private String owner;
 
     @Column(name = "phone")
     private String phone;

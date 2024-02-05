@@ -14,27 +14,27 @@
 <th:block layout:fragment="content_body">
     <main class="main-container">
         <div class="row">
-            <div class="col-12 col-sm-6 col-md-3">
-                <select class="form-control form-control-sm">
+            <div class="col-12 col-sm-6 col-md-3 mt-2">
+                <select class="form-control form-control-sm" id="dong">
                     <option value="">동</option>
                 </select>
             </div>
-            <div class="col-12 col-sm-6 col-md-3">
-                <select class="form-control form-control-sm">
+            <div class="col-12 col-sm-6 col-md-3 mt-2">
+                <select class="form-control form-control-sm" id="ho">
                     <option value="">호</option>
                 </select>
             </div>
-            <div class="col-12 col-sm-6 col-md-3">
-                <select class="form-control form-control-sm">
+            <div class="col-12 col-sm-6 col-md-3 mt-2">
+                <select class="form-control form-control-sm" id="status">
                     <option value="">상태</option>
                     <option value="W">대기</option>
                     <option value="Y">허가</option>
                     <option value="N">거절</option>
                 </select>
             </div>
-            <div class="col-12 col-sm-6 col-md-3">
+            <div class="col-12 col-sm-6 col-md-3 mt-2">
                 <div class="d-flex">
-                    <input type="text" class="form-control form-control-sm" id="carNum"/>
+                    <input type="text" class="form-control form-control-sm" id="carNum" PLACEHOLDER="차량번호"/>
                     <button class="btn btn-sm btn-dark w-50 ms-2" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i> 검색</button>
                 </div>
             </div>

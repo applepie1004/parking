@@ -11,7 +11,7 @@ import lombok.*;
 import java.sql.Timestamp;
 import java.util.UUID;
 
-@Getter @Setter
+@Data
 @IdClass(CarKeyEntity.class)
 @NoArgsConstructor
 public class CarAndApartmentEntity {
@@ -23,7 +23,7 @@ public class CarAndApartmentEntity {
         this.carRegDt = car.getRegDt();
         this.dong = apartment.getDong();
         this.ho = apartment.getHo();
-        this.onwer = apartment.getOnwer();
+        this.owner = apartment.getOwner();
         this.phone = apartment.getPhone();
     }
 
@@ -48,8 +48,8 @@ public class CarAndApartmentEntity {
     @Column(name = "ho")
     private int ho;
 
-    @Column(name = "onwer")
-    private String onwer;
+    @Column(name = "owner")
+    private String owner;
 
     @Column(name = "phone")
     private String phone;

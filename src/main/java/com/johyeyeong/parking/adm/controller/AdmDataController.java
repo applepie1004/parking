@@ -1,6 +1,7 @@
 package com.johyeyeong.parking.adm.controller;
 
 import com.johyeyeong.parking.adm.dto.StatusParam;
+import com.johyeyeong.parking.adm.entity.CarAndApartmentEntity;
 import com.johyeyeong.parking.adm.repository.CarAndApartmentRepository;
 import com.johyeyeong.parking.apply.entity.CarEntity;
 import com.johyeyeong.parking.apply.repository.CarRepository;
@@ -29,20 +30,12 @@ public class AdmDataController {
     public ResultMap getCarList(@RequestBody StatusParam param) {
         ResultMap result = new ResultMap();
         try {
-            List<CarEntity> list = null;
-            if(param != null && param.getStatus() != null && !"".equals(param.getStatus())) {
-                list = carRepository.findAllByStatusIs(param.getStatus());
-            } else {
-                list = carRepository.findAll();
-            }
+            List list = carAndApartmentRepository.findCarAndApartment(param);
             result.setList(list);
             result.setSuccess();
-
-            carAndApartmentRepository.findCarAndApartment(param);
-
-
         } catch (Exception e) {
-            result.setSuccess();
+            e.printStackTrace();
+            result.setFailure();
         }
         return result;
     }

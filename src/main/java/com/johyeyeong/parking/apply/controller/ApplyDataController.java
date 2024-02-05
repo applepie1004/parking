@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -51,9 +53,19 @@ public class ApplyDataController {
         Map<String, Object> resultMap = new HashMap<>();
 
         ApartmentEntity entity = apartmentRepository.findByDongAndHo(carRtParam.getDong(), carRtParam.getHo());
-        CarEntity car = carRepository.findByAptIdAndCarNum(entity.getAptId(), carRtParam.getCarNum());
 
-        resultMap.put("RESULT", new HashMap<>(){{ put("isCarExist", car != null ? true : false ); }});
+        CarEntity car = null;
+        if(entity != null) {
+            car = carRepository.findByAptIdAndCarNum(entity.getAptId(), carRtParam.getCarNum());
+        }
+
+        CarEntity finalCar = car;
+
+        CarEntity isSameCarExist = carRepository.findByCarNum(carRtParam.getCarNum());
+        resultMap.put("RESULT", new HashMap<>(){{ put("isCarExist", finalCar != null ? true : false );
+            put("isOwnerExist", entity != null ? true : false );
+            put("isSameCarExist", finalCar == null  && isSameCarExist != null ? true : false);
+        }});
 
         return resultMap;
     }
@@ -66,10 +78,12 @@ public class ApplyDataController {
         try {
             ApartmentEntity entity = apartmentRepository.findByDongAndHo(carRtParam.getDong(), carRtParam.getHo());
 
+            Timestamp ts = new Timestamp(System.currentTimeMillis());
             CarEntity car = new CarEntity();
             car.setAptId(entity.getAptId());
             car.setCarNum(carRtParam.getCarNum());
             car.setStatus("W");
+            car.setRegDt(ts);
 
             carRepository.save(car); // 기본 jpa 구문
             resultMap.put("RESULT", "SUCCESS");
